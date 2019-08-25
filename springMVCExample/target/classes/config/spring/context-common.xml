@@ -12,6 +12,16 @@
 	http://www.springframework.org/schema/cache 
 	http://www.springframework.org/schema/cache/spring-cache.xsd">
 
+	<!-- page Rendering 설정 -->
+	<bean id="textRenderer" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationRenderer" />
+	
+	<bean id="paginationManager" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
+		<property name="rendererType">
+			<map>
+				<entry key="text" value-ref="textRenderer" />
+			</map>
+		</property>
+	</bean> 
 
 	<context:component-scan base-package="example">
 		<context:exclude-filter type="annotation"

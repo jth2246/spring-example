@@ -29,7 +29,7 @@ public class SampleServiceImpl implements SampleService {
 	private FileUtils fileUtils;
 
 	@Override
-	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> selectBoardList(Map<String, Object> map) throws Exception {
 		return sampleDAO.selectBoardList(map);
 	}
 

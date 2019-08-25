@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import example.common.common.CommandMap;
 import example.common.util.FileUtils;
 import example.sample.service.SampleService;
@@ -23,14 +24,14 @@ public class SampleController {
 
 	@Resource(name = "sampleService")
 	private SampleService sampleService;
-	
 
 	@RequestMapping(value = "/sample/openBoardList.do")
-	public ModelAndView openSampleBoardList(Map<String, Object> commandMap) throws Exception {
+	public ModelAndView openSampleBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("sample/boardList");
 
-		List<Map<String, Object>> list = sampleService.selectBoardList(commandMap);
-		mv.addObject("list", list);
+		Map<String, Object> resultMap = sampleService.selectBoardList( commandMap.getMap());
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		mv.addObject("list", resultMap.get("result"));
 
 		return mv;
 	}
@@ -56,10 +57,10 @@ public class SampleController {
 	}
 
 	@RequestMapping(value = "/sample/insertBoard.do")
-	public ModelAndView insertBoard(CommandMap commandMap,HttpServletRequest request) throws Exception {
+	public ModelAndView insertBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
 
-		sampleService.insertBoard(commandMap.getMap(),request);
+		sampleService.insertBoard(commandMap.getMap(), request);
 		return mv;
 	}
 
@@ -77,21 +78,21 @@ public class SampleController {
 		ModelAndView mv = new ModelAndView("/sample/boardUpdate");
 		Map<String, Object> map = sampleService.selectBoardDetail(commandMap.getMap());
 		mv.addObject("map", map.get("map"));
-		mv.addObject("list",map.get("list"));
+		mv.addObject("list", map.get("list"));
 		return mv;
 	}
 
 	@RequestMapping(value = "/sample/BoardUpdate.do")
-	public ModelAndView updateBoard(CommandMap commandMap,HttpServletRequest request) throws Exception {
+	public ModelAndView updateBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
-		
-		sampleService.updateBoard(commandMap.getMap(),request);
-		
+
+		sampleService.updateBoard(commandMap.getMap(), request);
+
 		mv.addObject("IDX", commandMap.get("IDX"));
 		return mv;
 	}
-	
-		@RequestMapping(value = "/sample/deleteBoard.do")
+
+	@RequestMapping(value = "/sample/deleteBoard.do")
 	public ModelAndView deleteBoard(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
 		sampleService.deleteBoard(commandMap.getMap());
