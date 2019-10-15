@@ -1,1 +1,7 @@
-
+target/
+.class
+.classpath
+.project
+.settings
+META-INF
+.component

@@ -5,11 +5,25 @@
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
 		http://www.springframework.org/schema/jdbc 
 		http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd"> 
-		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
-			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> 
+		<bean id="dataSource_local" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+			<property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
 			<property name="url" value="jdbc:mysql://127.0.0.1:3306/testmysql?serverTimezone=UTC"/> 
 			<property name="username" value="jth2246"/> 
 			<property name="password" value="jth2246"/> 
 		</bean> 
+		<bean id="dataSource_aws" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> 
+			<property name="url" value="jdbc:mysql://mysql8.czndabjnrcgf.ap-northeast-2.rds.amazonaws.com:3306/awsmysql?serverTimezone=UTC"/> 
+			<property name="username" value="admin_mysql"/> 
+			<property name="password" value="admin_mysql"/> 
+</bean>  
 </beans>
-
+<!-- AWS RDS FORMAT BackUP -->
+<!--
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> 
+			<property name="url" value="jdbc:mysql://mysql8.czndabjnrcgf.ap-northeast-2.rds.amazonaws.com:3306/awsmysql?serverTimezone=UTC"/> 
+			<property name="username" value="admin_mysql"/> 
+			<property name="password" value="admin_mysql"/> 
+</bean> 
+--> 
