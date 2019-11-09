@@ -6,10 +6,10 @@
 		http://www.springframework.org/schema/jdbc 
 		http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd"> 
 		<bean id="dataSource_local" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
-			<property name="driverClassName" value="com.mysql.jdbc.Driver"/> 
+			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 			<property name="url" value="jdbc:mysql://127.0.0.1:3306/testmysql?serverTimezone=UTC"/> 
 			<property name="username" value="jth2246"/> 
-			<property name="password" value="jth2246"/> 
+			<property name="password" value="dream134679"/>
 		</bean> 
 		<bean id="dataSource_aws" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
 			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/> 
