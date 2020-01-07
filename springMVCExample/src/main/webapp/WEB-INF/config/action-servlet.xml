@@ -18,15 +18,15 @@
 	</context:component-scan>
 
 	<mvc:annotation-driven> 
-		<mvc:argument-resolvers> 
-			<bean class="example.common.resolver.CustomMapArgumentResolver"></bean>	
+		<mvc:argument-resolvers>
+			<bean class="example.common.resolver.CustomMapArgumentResolver"/>
 		</mvc:argument-resolvers> 
 	</mvc:annotation-driven>
 
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
-			<bean id="loggerInterceptor" class="example.common.logger.LoggerInterceptor"></bean>
+			<bean id="loggerInterceptor" class="example.common.logger.LoggerInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
